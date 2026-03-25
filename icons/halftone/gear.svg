@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="black" stroke-width="2">
+
+<defs>
+  <pattern id="halftone" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" />
+    <circle cx="4" cy="4" r="1" />
+  </pattern>
+</defs>
+
+
+<circle cx="32" cy="32" r="10" fill="url(#halftone)"/>
+<path d="M32 10 V18 M32 46 V54 M10 32 H18 M46 32 H54
+         M16 16 L22 22 M42 42 L48 48 M42 22 L48 16 M16 48 L22 42"/>
+
+</svg>
