@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 318">
+  <g fill="#00f">
+    <circle cx="243" cy="19" r="13.3" transform="rotate(-32 243 19)"/>
+    <circle cx="280.3" cy="13.3" r="13.3" transform="rotate(-32 280 13)"/>
+    <circle cx="317.3" cy="27.8" r="13.3" transform="rotate(-11 317 28)"/>
+    <circle cx="345.2" cy="53" r="13.3" transform="rotate(-32 345 53)"/>
+    <circle cx="365.7" cy="84.5" r="13.3" transform="rotate(-81 366 85)"/>
+    <circle cx="376.9" cy="120.5" r="13.3" transform="rotate(-22 377 121)"/>
+    <circle cx="376.9" cy="158.8" r="13.3" transform="rotate(-11 377 159)"/>
+    <use href="#a"/>
+    <use x="-26" y="27" href="#a"/>
+    <circle cx="300.9" cy="227.9" r="13.3" transform="rotate(-11 301 228)"/>
+    <use x="-94" y="13" href="#a"/>
+    <use x="-55" y="-7" href="#a"/>
+    <circle cx="326.1" cy="128.2" r="13.3" transform="rotate(-58 326 128)"/>
+    <path d="m280 119 3 8q-4 3-4 9a13 13 0 1 0 27 0l-3-8q4-3 4-9a13 13 0 0 0-27 0m-41-49a13 13 0 0 0 14 14q9-1 13-11l-1 2a13 13 0 0 0 27 0q0-6-3-9 8-3 9-13a13 13 0 0 0-27 0q0 5 4 9-7 3-9 10v-2a13 13 0 1 0-27 0m19 46 6 1a13 13 0 1 0 0-27q-11 1-13 11l-6-1a13 13 0 0 0-13 13l2 7q-10 4-10 13a13 13 0 0 0 13 14q5 0 8-3 3 10 14 11a13 13 0 1 0 0-27q-5 0-9 3l-2-5q8-2 10-10m15 64 6 2a13 13 0 1 0 0-27q-8 1-11 6l-6-1a13 13 0 1 0 0 26q6 0 11-6m-40-29-8 2q-4-5-12-6a13 13 0 1 0 0 27l8-3q4 6 12 6a13 13 0 1 0 0-26"/>
+    <circle cx="213.3" cy="200" r="13.3" transform="rotate(-32 213 200)"/>
+    <circle cx="213.3" cy="235.2" r="13.3" transform="rotate(-32 213 235)"/>
+    <circle cx="213.3" cy="270.2" r="13.3" transform="rotate(-58 213 270)"/>
+    <circle cx="213.3" cy="304.5" r="13.3" transform="rotate(-68 213 305)"/>
+    <circle cx="168.8" cy="277.9" r="13.3" transform="rotate(-11 169 278)"/>
+    <circle cx="168.8" cy="243.2" r="13.3" transform="rotate(-17 169 243)"/>
+    <circle cx="168.8" cy="208.2" r="13.3" transform="rotate(-17 169 208)"/>
+    <circle cx="168.8" cy="173.8" r="13.3" transform="rotate(-17 169 174)"/>
+    <circle cx="125.4" cy="199.2" r="13.3" transform="rotate(-17 125 199)"/>
+    <circle cx="98.7" cy="224.5" r="13.3" transform="rotate(-11 99 225)"/>
+    <circle cx="63" cy="225.5" r="13.3" transform="rotate(-17 63 225)"/>
+    <use x="-333" y="9" href="#a"/>
+    <circle cx="17.3" cy="168.5" r="13.3" transform="rotate(-9 17 168)"/>
+    <circle cx="13.3" cy="130.5" r="13.3" transform="rotate(-68 13 130)"/>
+    <use href="#b"/>
+    <circle cx="40.8" cy="60.9" r="13.3" transform="rotate(-9 41 61)"/>
+    <circle cx="66.9" cy="32.3" r="13.3"/>
+    <use x="79" y="-78" href="#b"/>
+    <circle cx="138.8" cy="16.4" r="13.3" transform="rotate(-17 139 16)"/>
+    <circle cx="168.8" cy="39.6" r="13.3" transform="rotate(-58 169 40)"/>
+    <circle cx="219.1" cy="45.6" r="13.3" transform="rotate(-58 219 46)"/>
+    <path d="M222 100v-3a13 13 0 0 0 0-26 13 13 0 0 0-14 13v2a13 13 0 0 0 1 27 13 13 0 0 0 13-13M93 55q1 12 12 14-3 4-3 7a13 13 0 0 0 13 14q12-1 14-13 2 10 13 11a13 13 0 1 0 0-27q-12 1-14 12-3-8-11-10l2-8a13 13 0 1 0-26 0m58 62q5 0 8-3 2 10 13 11a13 13 0 1 0 0-27l-8 3a13 13 0 0 0-25-4q-3-4-10-4a13 13 0 0 0-13 13q0 8 8 12l-3 9a13 13 0 0 0 13 14l3-1v2a13 13 0 0 0 14 13q5 0 8-3 4 4 10 4a13 13 0 1 0 0-26l-9 3a13 13 0 0 0-13-4l1-2q-1-8-9-12l2-2q3 4 10 4m-23 31q-9 1-13 10a13 13 0 1 0 0 27q10-1 13-11a13 13 0 1 0 0-26"/>
+    <circle cx="82.6" cy="189.8" r="13.3" transform="rotate(-9 83 190)"/>
+    <circle cx="66.2" cy="131.9" r="13.3" transform="rotate(-68 66 132)"/>
+    <path d="M87 138a13 13 0 1 0 27 0q0-5-4-9l2-7a13 13 0 1 0-27 0q1 6 4 9z"/>
+    <circle cx="174.3" cy="73.5" r="13.3" transform="rotate(-68 174 74)"/>
+  </g>
+  <defs>
+    <path id="a" d="M364 181a13 13 0 1 0 0 27 13 13 0 1 0 0-27"/>
+    <path id="b" d="M22 107a13 13 0 1 0 0-27 13 13 0 1 0 0 27"/>
+  </defs>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="#00f" viewBox="0 0 352 331">
+  <circle cx="325.7" cy="138.4" r="13.3" transform="rotate(-45 326 138)"/>
+  <circle cx="334" cy="174.3" r="13.3" transform="rotate(-13 334 174)"/>
+  <circle cx="339" cy="213.6" r="13.3" transform="rotate(-45 339 214)"/>
+  <circle cx="339" cy="252.9" r="13.3" transform="rotate(-45 339 253)"/>
+  <circle cx="333.6" cy="289.7" r="13.3" transform="rotate(-9 333 290)"/>
+  <circle cx="312.9" cy="317.2" r="13.3" transform="rotate(-13 313 317)"/>
+  <circle cx="280.3" cy="297.2" r="13.3" transform="rotate(-45 280 297)"/>
+  <circle cx="245.5" cy="281.2" r="13.3" transform="rotate(-45 246 281)"/>
+  <circle cx="220" cy="253.8" r="13.3" transform="rotate(-45 220 254)"/>
+  <circle cx="215.3" cy="215.2" r="13.3" transform="rotate(-13 215 215)"/>
+  <circle cx="267" cy="257.7" r="13.3" transform="rotate(-45 267 258)"/>
+  <circle cx="307" cy="245.7" r="13.3" transform="rotate(-45 307 246)"/>
+  <path d="M322 201a13 13 0 0 0-13-14h-2v-1a13 13 0 1 0-13 14l2-1v2l2 7a13 13 0 0 0-16 7 13 13 0 0 0-18 2l-6-2a13 13 0 1 0 0 27q7 0 10-4a13 13 0 0 0 18-6l8 2a13 13 0 0 0 13-13q0-5-3-8l5 1a13 13 0 0 0 13-13m-75 7q8 0 12-6 3 3 8 3a13 13 0 0 0 13-13q0-9-8-13l2-7a13 13 0 0 0-27 0q0 7 6 11l-6-1a13 13 0 1 0 0 26m-6-44-2-7a13 13 0 0 0 8-15q8-2 11-8l1 1-1 3a13 13 0 0 0 27 0q0-6-6-11l1-3a13 13 0 0 0-14-13q-8 0-12 8-3-4-8-4a13 13 0 0 0-14 14l1 3a13 13 0 0 0-12 13l1 6a13 13 0 0 0-8 15q-10 1-11 13a13 13 0 1 0 26 0v-2q11-3 12-13"/>
+  <circle cx="300" cy="156.9" r="13.3" transform="rotate(-45 300 157)"/>
+  <path d="M297 97h-3a13 13 0 1 0 0 26q8 0 12-7h3a13 13 0 1 0 0-27q-8 0-12 8"/>
+  <circle cx="286.6" cy="72" r="13.3" transform="rotate(-45 287 72)"/>
+  <circle cx="254.9" cy="51.5" r="13.3" transform="rotate(-45 255 51)"/>
+  <circle cx="228.7" cy="73.6" r="13.3" transform="rotate(-45 229 74)"/>
+  <circle cx="253" cy="94.2" r="13.3" transform="rotate(-13 253 94)"/>
+  <circle cx="26.7" cy="137.6" r="13.3" transform="rotate(-45 27 138)"/>
+  <circle cx="18.3" cy="173.4" r="13.3" transform="rotate(-13 18 173)"/>
+  <circle cx="13.3" cy="212.8" r="13.3" transform="rotate(-68 13 213)"/>
+  <circle cx="13.3" cy="252.1" r="13.3" transform="rotate(-13 13 252)"/>
+  <circle cx="18.8" cy="288.9" r="13.3" transform="rotate(-13 19 289)"/>
+  <circle cx="39.5" cy="316.4" r="13.3" transform="rotate(-13 39 316)"/>
+  <circle cx="72" cy="296.4" r="13.3" transform="rotate(-45 72 296)"/>
+  <circle cx="106.8" cy="280.4" r="13.3" transform="rotate(-45 107 280)"/>
+  <circle cx="132.4" cy="253" r="13.3" transform="rotate(-13 132 253)"/>
+  <circle cx="137" cy="214.4" r="13.3"/>
+  <circle cx="85.3" cy="256.9" r="13.3" transform="rotate(-13 85 257)"/>
+  <path d="m59 233 8-2a13 13 0 0 0 17 6q4 3 10 4a13 13 0 1 0 0-27l-6 2a13 13 0 0 0-18-2 13 13 0 0 0-16-6q3-4 3-8v-1h2a13 13 0 1 0 0-27 13 13 0 0 0-14 13v2l-2-1a13 13 0 1 0 0 27l5-1q-3 4-3 8a13 13 0 0 0 14 13"/>
+  <circle cx="45.3" cy="244.8" r="13.3" transform="rotate(-45 45 245)"/>
+  <path d="M118 194a13 13 0 0 0-13-13l-5 1q5-3 5-11a13 13 0 1 0-27 0l2 7q-8 4-8 13a13 13 0 0 0 13 13l9-3q3 7 11 7a13 13 0 0 0 13-14m47-64v-4a13 13 0 0 0-13-13l-8 3 1-7a13 13 0 1 0-13 14l9-3-2 6q0 11 11 13l-1 4a13 13 0 1 0 27 0q-1-11-11-13m39 11a13 13 0 0 0 11-18l5 1a13 13 0 1 0-13-14l1 6-5-1a13 13 0 0 0-14 13l1 2q-11 3-12 14a13 13 0 1 0 27 0z"/>
+  <circle cx="168.6" cy="98.6" r="13.3"/>
+  <circle cx="191.3" cy="78" r="13.3" transform="rotate(-13 191 78)"/>
+  <circle cx="169.3" cy="56" r="13.3" transform="rotate(-68 169 56)"/>
+  <circle cx="169.3" cy="13.3" r="13.3" transform="rotate(-45 169 13)"/>
+  <circle cx="191.3" cy="36.7" r="13.3" transform="rotate(-13 191 37)"/>
+  <path d="M107 114q-6 1-9 4-4-8-12-8a13 13 0 0 0-13 13v4q-5 3-6 11a13 13 0 1 0 27 0v-4h1q4 7 10 7v3q0 10 8 13a13 13 0 0 0 10 19v2a13 13 0 1 0 27 0q-1-11-12-13v-2q0-9-8-12l2-7a13 13 0 0 0-12-13v-3a13 13 0 0 0-13-14"/>
+  <circle cx="52.3" cy="156.1" r="13.3" transform="rotate(-13 52 156)"/>
+  <path d="M43 115h3q4 7 12 8a13 13 0 1 0 0-27h-2q-4-7-13-8a13 13 0 1 0 0 27"/>
+  <circle cx="65.7" cy="71.2" r="13.3" transform="rotate(-13 66 71)"/>
+  <circle cx="97.4" cy="50.6" r="13.3" transform="rotate(-13 97 51)"/>
+  <circle cx="123.7" cy="72.8" r="13.3" transform="rotate(-13 124 73)"/>
+  <circle cx="99.4" cy="93.3" r="13.3"/>
+</svg>
