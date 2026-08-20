@@ -1,0 +1,129 @@
+name: Sync to R2
+
+# Mirrors this repo into the `assets` R2 bucket, served at assets.bluehealth.co.
+#
+# Git stays the source of truth: the bucket is a mirror, so a bad run is simply
+# re-runnable and nothing is ever authored on the R2 side. `aws s3 sync` skips
+# what already exists, so a run that dies half way just continues on re-run —
+# including the first one, which seeds the whole ~700MB bucket.
+#
+# FILENAMES ARE IMMUTABLE. assets.bluehealth.co is cached for a year at the edge
+# *and* in the browser, and a purge cannot evict a copy a browser already holds —
+# a kiosk that cached the old bytes keeps them until someone clears its cache by
+# hand. So never republish different bytes under a name that is already live: add
+# a new filename (this repo already versions by dimension, e.g.
+# `img/model-front-f-presentation-@2134x2160.webp`) and point the app code at it.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One sync at a time — two overlapping runs would race on the same keys.
+concurrency:
+  group: sync-r2
+
+jobs:
+  # Defence in depth. The PR check cannot see a push straight to main, and an
+  # upload that replaces a live object is not undoable — so verify here too and
+  # refuse to sync, leaving the bucket with the bytes everything has cached.
+  no-overwrites:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history for the range diff, but no blobs: comparing names only
+          # needs commits and trees, and this repo's history of binaries is far
+          # larger than its working tree.
+          fetch-depth: 0
+          filter: blob:none
+
+      - name: Reject modified assets
+        env:
+          BEFORE: ${{ github.event.before }}
+          EVENT: ${{ github.event_name }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          if [ "$EVENT" != "push" ]; then
+            echo "Manual run — no push range to compare."
+            exit 0
+          fi
+          case "$BEFORE" in
+            '' | 0000000000000000000000000000000000000000)
+              echo "New branch — nothing to compare."
+              exit 0
+              ;;
+          esac
+          if ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            echo "Previous head is gone (force push?) — nothing to compare."
+            exit 0
+          fi
+          .github/scripts/no-overwrites.sh "$BEFORE" "$HEAD_SHA"
+
+  sync:
+    needs: no-overwrites
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      # R2 is S3-compatible but region-less; the CLI still demands a value.
+      AWS_DEFAULT_REGION: auto
+      # aws-cli v2 started sending CRC32 integrity headers by default, which R2
+      # rejects on some paths. Send them only where the API requires them.
+      AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+      AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+      ENDPOINT: https://85b31fa0e6b241081bea5be5956f9478.r2.cloudflarestorage.com
+      BUCKET: s3://assets
+      # A year, matching the edge/browser TTLs the cache rule enforces. `immutable`
+      # tells browsers not even to revalidate.
+      CACHE_CONTROL: public, max-age=31536000, immutable
+      # Compare by size alone. `sync` otherwise also re-uploads anything whose
+      # local mtime is newer than the object's — and a fresh checkout stamps
+      # every file with the current time, so each push would re-upload the whole
+      # bucket. Size is sufficient here precisely because content changes under
+      # an existing name are forbidden (see no-overwrites above).
+      SIZE_ONLY: --size-only
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # `aws s3 sync` guesses content types from the extension via Python's
+      # mimetypes, which does not know `.glb` (it would land as
+      # application/octet-stream and GLTFLoader refuses it) or `.lottie`. Those
+      # two get their own passes with an explicit type; everything else is
+      # guessed correctly.
+      - name: Sync models (.glb)
+        run: |
+          aws s3 sync . "$BUCKET" \
+            --endpoint-url "$ENDPOINT" \
+            --exclude '*' --include '*.glb' \
+            --content-type model/gltf-binary \
+            --cache-control "$CACHE_CONTROL" \
+            $SIZE_ONLY --no-progress
+
+      - name: Sync lottie animations
+        run: |
+          aws s3 sync . "$BUCKET" \
+            --endpoint-url "$ENDPOINT" \
+            --exclude '*' --include '*.lottie' \
+            --content-type application/zip \
+            --cache-control "$CACHE_CONTROL" \
+            $SIZE_ONLY --no-progress
+
+      # Everything else. `--delete` is deliberately OFF: shipped native app
+      # builds have asset URLs baked in, so a file removed from git must keep
+      # serving. Prune by hand when a path is provably unreferenced.
+      #
+      # No cache purge afterwards, deliberately: new paths have nothing cached,
+      # overwrites are refused, and the cache rule does not cache error
+      # responses — so there is nothing an edge could be holding that this run
+      # invalidates.
+      - name: Sync everything else
+        run: |
+          aws s3 sync . "$BUCKET" \
+            --endpoint-url "$ENDPOINT" \
+            --exclude '.git/*' --exclude '.github/*' --exclude '.githooks/*' \
+            --exclude '*.glb' --exclude '*.lottie' \
+            --cache-control "$CACHE_CONTROL" \
+            $SIZE_ONLY --no-progress
