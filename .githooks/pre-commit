@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Local mirror of the immutability check — feedback before you push. Enable once
+# per clone:
+#
+#   git config core.hooksPath .githooks
+#
+# CI enforces the same rule anyway (on the PR, and again before the sync
+# uploads), so skipping this only delays the news. Bypass one commit with
+# `git commit --no-verify`.
+
+exec .github/scripts/no-overwrites.sh --staged

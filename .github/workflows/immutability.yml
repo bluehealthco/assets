@@ -1,0 +1,48 @@
+name: Immutability
+
+# Assets are served from assets.bluehealth.co with a one-year cache at the edge
+# AND in the browser, so a path that is live can never be given different bytes:
+# a purge clears Cloudflare, but nothing can evict a copy a browser already
+# holds. This check enforces that — modifying a tracked asset fails the PR.
+#
+# Adding, renaming and deleting are all fine. A rename is a new URL, and a delete
+# leaves the object in the bucket (the sync runs without --delete), so nothing
+# already published breaks.
+
+on:
+  pull_request:
+
+jobs:
+  no-overwrites:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Names only, so history without blobs is enough — and much cheaper in
+          # a repo whose history is mostly binaries.
+          fetch-depth: 0
+          filter: blob:none
+
+      - name: Reject modified assets
+        env:
+          # Set the `allow-overwrite` label to bypass. Only legitimate when the
+          # path has never been deployed or fetched — e.g. a file added earlier
+          # today that no app references yet.
+          BYPASS: ${{ contains(github.event.pull_request.labels.*.name, 'allow-overwrite') }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          base=$(git merge-base "origin/$BASE_REF" "$HEAD_SHA")
+
+          if .github/scripts/no-overwrites.sh "$base" "$HEAD_SHA"; then
+            exit 0
+          fi
+
+          if [ "$BYPASS" = "true" ]; then
+            echo "::warning::Overwrite allowed by the 'allow-overwrite' label. Only safe if none of the paths above has ever been fetched or deployed."
+            exit 0
+          fi
+
+          echo "::error::Published assets are immutable — add the change under a new filename, or label this PR 'allow-overwrite' if the path has never been deployed."
+          exit 1
