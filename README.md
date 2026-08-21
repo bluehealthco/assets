@@ -48,10 +48,23 @@ Two guards, because getting this wrong is not undoable:
   git config core.hooksPath .githooks
   ```
 
+## `draco/`
+
+The Draco decoder that `DRACOLoader` fetches at runtime, so compressed models do
+not depend on Google's CDN. The folder is named after the three.js release whose
+`examples/jsm/libs/draco/gltf/` build it holds — bumping three means copying the
+files into a **new** folder and updating `DRACO_DECODER_PATH` in the app repo,
+never replacing these.
+
 ## Publishing
 
 Push to `main`. [`.github/workflows/sync-r2.yml`](.github/workflows/sync-r2.yml)
 mirrors the repo into the bucket.
+
+Comparison is by size, so re-running never fixes an object's *metadata* — a
+wrong `Content-Type` on an already-uploaded key needs an explicit
+`aws s3 cp s3://assets/<key> s3://assets/<key> --metadata-directive REPLACE
+--content-type <type> --cache-control "public, max-age=31536000, immutable"`.
 
 `.glb` and `.lottie` are uploaded in their own passes with an explicit
 `Content-Type`, because the AWS CLI guesses those wrong and `GLTFLoader` refuses
