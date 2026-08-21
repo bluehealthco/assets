@@ -88,17 +88,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # `aws s3 sync` guesses content types from the extension via Python's
-      # mimetypes, which does not know `.glb` (it would land as
-      # application/octet-stream and GLTFLoader refuses it) or `.lottie`. Those
-      # two get their own passes with an explicit type; everything else is
-      # guessed correctly.
+      # Content types for the formats that matter are pinned rather than left to
+      # the mimetypes table bundled with whichever aws-cli the runner has:
+      # `.lottie` is unknown to it outright, and a `.glb` or `.wasm` served as
+      # application/octet-stream is refused by GLTFLoader / not treatable as a
+      # module. Everything else is guessed, which is fine for images and fonts.
       - name: Sync models (.glb)
         run: |
           aws s3 sync . "$BUCKET" \
             --endpoint-url "$ENDPOINT" \
             --exclude '*' --include '*.glb' \
             --content-type model/gltf-binary \
+            --cache-control "$CACHE_CONTROL" \
+            $SIZE_ONLY --no-progress
+
+      - name: Sync wasm
+        run: |
+          aws s3 sync . "$BUCKET" \
+            --endpoint-url "$ENDPOINT" \
+            --exclude '*' --include '*.wasm' \
+            --content-type application/wasm \
             --cache-control "$CACHE_CONTROL" \
             $SIZE_ONLY --no-progress
 
@@ -124,6 +133,6 @@ jobs:
           aws s3 sync . "$BUCKET" \
             --endpoint-url "$ENDPOINT" \
             --exclude '.git/*' --exclude '.github/*' --exclude '.githooks/*' \
-            --exclude '*.glb' --exclude '*.lottie' \
+            --exclude '*.glb' --exclude '*.lottie' --exclude '*.wasm' \
             --cache-control "$CACHE_CONTROL" \
             $SIZE_ONLY --no-progress
